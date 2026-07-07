@@ -34,6 +34,16 @@ wheels = [
 name = "aosom-lark-message"
 version = "0.0.1"
 source = { virtual = "aosom-lark-message" }
+dependencies = [
+    { name = "dify-plugin" },
+    { name = "httpx" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "dify-plugin", specifier = ">=0.9.0" },
+    { name = "httpx", specifier = ">=0.28.1" },
+]
 
 [[package]]
 name = "blinker"
