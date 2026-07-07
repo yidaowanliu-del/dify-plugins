@@ -28,7 +28,7 @@ parameters:
   - name: msg_type
     type: select
     required: false
-    form: llm
+    form: form
     default: text
     label:
       en_US: Message Type
@@ -75,7 +75,7 @@ parameters:
   - name: receive_id_type
     type: select
     required: false
-    form: llm
+    form: form
     default: open_id
     label:
       en_US: Receive ID Type
