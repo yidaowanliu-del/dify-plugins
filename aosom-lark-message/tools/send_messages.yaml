@@ -27,8 +27,9 @@ parameters:
 
   - name: msg_type
     type: select
-    required: true
-    form: form
+    required: false
+    form: llm
+    default: text
     label:
       en_US: Message Type
       zh_Hans: 消息类型
@@ -73,8 +74,9 @@ parameters:
 
   - name: receive_id_type
     type: select
-    required: true
-    form: form
+    required: false
+    form: llm
+    default: open_id
     label:
       en_US: Receive ID Type
       zh_Hans: ID 类型
