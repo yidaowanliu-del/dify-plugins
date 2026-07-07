@@ -21,7 +21,7 @@ plugins:
   tools:
     - provider/provider.yaml
 resource:
-  memory: 268435456
+  memory: 1048576
   permission:
     tool:
       enabled: true
