@@ -1,0 +1,12 @@
+[project]
+name = "dify-plugins"
+version = "0.1.0"
+description = "Dify 插件合集"
+requires-python = ">=3.12"
+dependencies = [
+    "dify-plugin>=0.9.1",
+    "httpx>=0.28.1",
+]
+
+[tool.uv.workspace]
+members = ["aosom-lark-message"]

@@ -1,0 +1,116 @@
+identity:
+  name: "lark_send_message"
+  author: "aosom"
+  label:
+    en_US: "Send Lark Message"
+    zh_Hans: "发送飞书消息"
+description:
+  human:
+    en_US: "Send a message to a Lark/Feishu user or group chat"
+    zh_Hans: "发送飞书消息给个人用户或群聊"
+  llm: >-
+    Send a message to a Lark/Feishu user or group chat.
+    Supports text, post (rich text), image, file, audio, media, and interactive (card) message types.
+    Content is passed as a JSON string matching the Lark message content format.
+
+parameters:
+  - name: receive_id
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Receive ID
+      zh_Hans: 接收者 ID
+    human_description:
+      en_US: The ID of the user or group chat to receive the message
+      zh_Hans: 接收消息的用户或群聊的 ID
+    llm_description: "The ID of the user or group chat to receive the message. Example: ou_45d3cc5b79714d1d48fd2787e4288d5a"
+
+  - name: msg_type
+    type: select
+    required: false
+    form: llm
+    default: text
+    label:
+      en_US: Message Type
+      zh_Hans: 消息类型
+    human_description:
+      en_US: Type of the message to send
+      zh_Hans: 发送的消息类型
+    llm_description: Type of the message to send
+    options:
+      - value: text
+        label:
+          en_US: text
+          zh_Hans: text
+      - value: post
+        label:
+          en_US: post
+          zh_Hans: post
+      - value: image
+        label:
+          en_US: image
+          zh_Hans: image
+      - value: interactive
+        label:
+          en_US: interactive
+          zh_Hans: interactive
+
+  - name: content
+    type: object
+    required: true
+    form: llm
+    label:
+      en_US: Content
+      zh_Hans: 消息内容
+    human_description:
+      en_US: "Message content as JSON object. For text: {\"text\":\"hello\"}. For post/others: match Lark format."
+      zh_Hans: "消息内容 JSON 对象。text 类型: {\"text\":\"hello\"}，其他类型按飞书格式。"
+    llm_description: |-
+      Message content as a JSON object. Examples by msg_type:
+      - text: {"text":"hello world"}
+      - post: {"zh_cn":{"title":"title","content":[[{"tag":"text","text":"hello"}]]}}
+      - image: {"image_key":"img_xxxxx"}
+      - interactive: {"elements":[{"tag":"markdown","content":"hello"}],"header":{"title":{"tag":"plain_text","content":"Card Title"}}}
+
+  - name: receive_id_type
+    type: select
+    required: false
+    form: llm
+    default: open_id
+    label:
+      en_US: Receive ID Type
+      zh_Hans: ID 类型
+    human_description:
+      en_US: "The type of the receive_id parameter (open_id/user_id/union_id/chat_id)"
+      zh_Hans: "receive_id 的参数类型"
+    llm_description: "The type of the receive_id parameter: open_id, user_id, union_id, or chat_id"
+    options:
+      - value: open_id
+        label:
+          en_US: open_id
+      - value: user_id
+        label:
+          en_US: user_id
+      - value: union_id
+        label:
+          en_US: union_id
+      - value: chat_id
+        label:
+          en_US: chat_id
+
+  - name: uuid
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: UUID (Idempotency)
+      zh_Hans: UUID（去重）
+    human_description:
+      en_US: "Unique identifier for idempotency. Same UUID prevents duplicate sends within 1 hour. Max 50 chars."
+      zh_Hans: "去重序列号，最长 50 字符。相同 uuid 在 1 小时内至多发送一条消息。"
+    llm_description: "Optional UUID for idempotent message sending. Same UUID within 1 hour prevents duplicate messages. Max 50 characters."
+
+extra:
+  python:
+    source: tools/send_message.py
