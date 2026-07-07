@@ -10,8 +10,7 @@ description:
     zh_Hans: "发送飞书消息给个人用户或群聊"
   llm: >-
     Send a message to a Lark/Feishu user or group chat.
-    Supports text, post (rich text), image, file, audio, media, and interactive (card) message types.
-    Content is passed as a JSON string matching the Lark message content format.
+    Supports text, post (rich text), image, and interactive (card) message types.
 
 parameters:
   - name: receive_id
@@ -28,9 +27,8 @@ parameters:
 
   - name: msg_type
     type: select
-    required: false
+    required: true
     form: form
-    default: text
     label:
       en_US: Message Type
       zh_Hans: 消息类型
@@ -57,17 +55,17 @@ parameters:
           zh_Hans: interactive
 
   - name: content
-    type: object
+    type: string
     required: true
     form: llm
     label:
       en_US: Content
       zh_Hans: 消息内容
     human_description:
-      en_US: "Message content as JSON object. For text: {\"text\":\"hello\"}. For post/others: match Lark format."
-      zh_Hans: "消息内容 JSON 对象。text 类型: {\"text\":\"hello\"}，其他类型按飞书格式。"
+      en_US: "Message content, JSON serialized string. For text: {\"text\":\"hello\"}"
+      zh_Hans: "消息内容，JSON 序列化字符串。text 类型: {\"text\":\"hello\"}"
     llm_description: |-
-      Message content as a JSON object. Examples by msg_type:
+      Message content, a JSON serialized string. Examples by msg_type:
       - text: {"text":"hello world"}
       - post: {"zh_cn":{"title":"title","content":[[{"tag":"text","text":"hello"}]]}}
       - image: {"image_key":"img_xxxxx"}
@@ -75,9 +73,8 @@ parameters:
 
   - name: receive_id_type
     type: select
-    required: false
+    required: true
     form: form
-    default: open_id
     label:
       en_US: Receive ID Type
       zh_Hans: ID 类型
@@ -104,7 +101,7 @@ parameters:
     required: false
     form: llm
     label:
-      en_US: UUID (Idempotency)
+      en_US: UUID
       zh_Hans: UUID（去重）
     human_description:
       en_US: "Unique identifier for idempotency. Same UUID prevents duplicate sends within 1 hour. Max 50 chars."
