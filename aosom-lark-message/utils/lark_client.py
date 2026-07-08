@@ -113,6 +113,21 @@ class LarkClient:
         self._http.close()
 
 
+_shared_client: LarkClient | None = None
+
+
+def get_client(credentials: dict[str, Any]) -> LarkClient:
+    """获取共享的 LarkClient 实例（懒加载，全局复用）"""
+    global _shared_client
+    if _shared_client is None:
+        _shared_client = LarkClient(
+            credentials["lark_app_id"],
+            credentials["lark_app_secret"],
+            credentials.get("lark_base_url", "https://open.feishu.cn"),
+        )
+    return _shared_client
+
+
 def build_client(credentials: dict[str, Any]) -> LarkClient:
     return LarkClient(
         credentials["lark_app_id"],

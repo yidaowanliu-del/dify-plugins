@@ -5,7 +5,7 @@ from typing import Any
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
 
-from utils.lark_client import build_client
+from utils.lark_client import get_client
 
 
 class SendMessagesTool(Tool):
@@ -28,18 +28,13 @@ class SendMessagesTool(Tool):
         else:
             json.loads(content)
 
-        client = build_client(self.runtime.credentials)
-        try:
-            results = client.send_messages(
-                receive_ids,
-                msg_type,
-                content,
-                receive_id_type=receive_id_type,
-                uuid=uuid,
-            )
-            for r in results:
-                yield self.create_json_message(r)
-        except Exception as e:
-            raise Exception(f"Failed to send messages: {e}")
-        finally:
-            client.close()
+        client = get_client(self.runtime.credentials)
+        results = client.send_messages(
+            receive_ids,
+            msg_type,
+            content,
+            receive_id_type=receive_id_type,
+            uuid=uuid,
+        )
+        for r in results:
+            yield self.create_json_message(r)
