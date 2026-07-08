@@ -1,0 +1,67 @@
+identity:
+  name: quick_batch_update
+  author: aosom
+  label:
+    en_US: Batch Update Rows
+    zh_Hans: 批量更新行
+description:
+  human:
+    en_US: Update multiple rows by row_number with specified columns
+    zh_Hans: 按行号批量更新指定列的数据
+  llm: Update rows. Each item has row_number and column values.
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+  label:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+- name: sheet_id
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+  label:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+- name: update_data
+  type: array
+  required: true
+  form: llm
+  label:
+    en_US: Update Data
+    zh_Hans: 更新数据
+  llm_description: 'Array of dicts. Each must include "row_number". Example: [{"row_number":3,"name":"Alice","age":"31"}]'
+  human_description:
+    en_US: 'Array of dicts. Each must include "row_number". Example: [{"row_number":3,"name":"Alice","age":"31"}]'
+    zh_Hans: 'Array of dicts. Each must include "row_number". Example: [{"row_number":3,"name":"Alice","age":"31"}]'
+- name: columns
+  type: array
+  required: false
+  form: llm
+  label:
+    en_US: Columns
+  llm_description: Optional list of column names to update
+  human_description:
+    en_US: Optional list of column names to update
+    zh_Hans: Optional list of column names to update
+- name: data_start
+  type: number
+  required: false
+  form: llm
+  default: 2
+  label:
+    en_US: Data Start Row
+  llm_description: Header row = data_start - 1 (default 2)
+  human_description:
+    en_US: Header row = data_start - 1 (default 2)
+    zh_Hans: Header row = data_start - 1 (default 2)
+extra:
+  python:
+    source: tools/quick_batch_update.py

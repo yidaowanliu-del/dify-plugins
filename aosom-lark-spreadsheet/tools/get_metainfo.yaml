@@ -1,0 +1,30 @@
+identity:
+  name: "get_spreadsheet_metainfo"
+  author: "aosom"
+  label:
+    en_US: "Get Spreadsheet Info"
+    zh_Hans: "获取电子表格信息"
+description:
+  human:
+    en_US: "Get spreadsheet metadata including sheet list, row/column counts"
+    zh_Hans: "获取电子表格元信息，包括工作表列表、行数、列数"
+  llm: >-
+    Get spreadsheet metadata including sheet list, row and column counts.
+    Returns the spreadsheet title and details of each sheet.
+
+parameters:
+  - name: spreadsheet_token
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Spreadsheet Token
+      zh_Hans: 电子表格 Token
+    human_description:
+      en_US: The token of the spreadsheet
+      zh_Hans: 电子表格的 token
+    llm_description: The token of the spreadsheet (from the URL)
+
+extra:
+  python:
+    source: tools/get_metainfo.py

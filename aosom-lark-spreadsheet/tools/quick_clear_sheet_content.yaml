@@ -1,0 +1,72 @@
+identity:
+  name: quick_clear_sheet_content
+  author: aosom
+  label:
+    en_US: Clear Sheet Content
+    zh_Hans: 清空工作表内容
+description:
+  human:
+    en_US: Clear cell values without removing rows. Optionally clear columns before
+      a given column.
+    zh_Hans: 清空单元格数据（不移除行）。可选指定只清空某列之前的所有列。
+  llm: Clear cell content without deleting rows.
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+  label:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+- name: sheet_id
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+  label:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+- name: keep_header
+  type: boolean
+  required: false
+  form: llm
+  default: true
+  human_description:
+    en_US: keep_header
+    zh_Hans: keep_header
+  label:
+    en_US: keep_header
+    zh_Hans: keep_header
+- name: before_column
+  type: string
+  required: false
+  form: llm
+  label:
+    en_US: Before Column
+    zh_Hans: 指定列字母
+  llm_description: Only clear columns before this column letter (e.g. F). Leave empty
+    to clear all.
+  human_description:
+    en_US: Only clear columns before this column letter (e.g. F). Leave empty to clear
+      all.
+    zh_Hans: Only clear columns before this column letter (e.g. F). Leave empty to
+      clear all.
+- name: data_start
+  type: number
+  required: false
+  form: llm
+  default: 2
+  label:
+    en_US: Data Start Row
+  llm_description: First data row to clear (default 2)
+  human_description:
+    en_US: First data row to clear (default 2)
+    zh_Hans: First data row to clear (default 2)
+extra:
+  python:
+    source: tools/quick_clear_sheet_content.py

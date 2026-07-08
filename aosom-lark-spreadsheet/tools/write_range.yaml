@@ -1,0 +1,55 @@
+identity:
+  name: "write_range"
+  author: "aosom"
+  label:
+    en_US: "Write Spreadsheet Range"
+    zh_Hans: "写入单元格范围"
+description:
+  human:
+    en_US: "Write data to a spreadsheet range (max 5000 rows, 100 columns)"
+    zh_Hans: "向电子表格指定范围写入数据（最多 5000 行、100 列）"
+  llm: >-
+    Write data to a specified range in a spreadsheet.
+    Overwrites existing data. Range format: {sheetId}!A1:C10.
+    Values is a 2D array: [["header1", "header2"], ["val1", "val2"]]
+
+parameters:
+  - name: spreadsheet_token
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Spreadsheet Token
+      zh_Hans: 电子表格 Token
+    human_description:
+      en_US: The token of the spreadsheet
+      zh_Hans: 电子表格的 token
+    llm_description: The token of the spreadsheet
+
+  - name: range_str
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Range
+      zh_Hans: 范围
+    human_description:
+      en_US: "Range in A1 notation, e.g. Sheet1!A1:C10"
+      zh_Hans: "范围，如 Sheet1!A1:C10"
+    llm_description: "Range in A1 notation, e.g. {sheetId}!A1:C10"
+
+  - name: values
+    type: array
+    required: true
+    form: llm
+    label:
+      en_US: Values
+      zh_Hans: 数据
+    human_description:
+      en_US: "2D array of values to write, e.g. [[\"col1\",\"col2\"],[\"val1\",\"val2\"]]"
+      zh_Hans: "要写入的二维数组，如 [[\"col1\",\"col2\"],[\"val1\",\"val2\"]]"
+    llm_description: "2D array of values. First row can be headers. Example: [[\"name\",\"age\"],[\"Alice\",\"30\"]]"
+
+extra:
+  python:
+    source: tools/write_range.py

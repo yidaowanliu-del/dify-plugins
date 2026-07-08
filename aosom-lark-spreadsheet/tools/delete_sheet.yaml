@@ -1,0 +1,36 @@
+identity:
+  name: delete_sheet
+  author: aosom
+  label:
+    en_US: Delete Sheet
+    zh_Hans: 删除工作表
+description:
+  human:
+    en_US: Delete a sheet from a spreadsheet
+    zh_Hans: 从电子表格中删除指定工作表
+  llm: Delete a sheet from a spreadsheet by sheet ID.
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Spreadsheet Token
+  llm_description: The token of the spreadsheet
+  human_description:
+    en_US: The token of the spreadsheet
+    zh_Hans: The token of the spreadsheet
+- name: sheet_id
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Sheet ID
+    zh_Hans: 工作表 ID
+  llm_description: The ID of the sheet to delete
+  human_description:
+    en_US: The ID of the sheet to delete
+    zh_Hans: The ID of the sheet to delete
+extra:
+  python:
+    source: tools/delete_sheet.py

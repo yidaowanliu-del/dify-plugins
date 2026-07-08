@@ -1,0 +1,61 @@
+identity:
+  name: append_data
+  author: aosom
+  label:
+    en_US: Append Spreadsheet Data
+    zh_Hans: 追加数据到工作表
+description:
+  human:
+    en_US: Append data rows to the end of a sheet (auto-finds empty position)
+    zh_Hans: 追加数据到工作表末尾（自动定位空白位置）
+  llm: 'Append data rows to the end of a sheet. Automatically finds the next empty
+    row. Values is a 2D array: [["val1", "val2"], ["val3", "val4"]]'
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Spreadsheet Token
+    zh_Hans: 电子表格 Token
+  human_description:
+    en_US: The token of the spreadsheet
+    zh_Hans: 电子表格的 token
+  llm_description: The token of the spreadsheet
+- name: sheet_id
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Sheet ID
+    zh_Hans: 工作表 ID
+  human_description:
+    en_US: The ID of the sheet to append to
+    zh_Hans: 要追加数据的工作表 ID
+  llm_description: The sheet ID (from get_spreadsheet_metainfo)
+- name: values
+  type: array
+  required: true
+  form: llm
+  label:
+    en_US: Values
+    zh_Hans: 数据
+  human_description:
+    en_US: 2D array of data rows to append
+    zh_Hans: 要追加的二维数组
+  llm_description: '2D array of values. Example: [["Alice","30"],["Bob","25"]]'
+- name: data_start
+  type: number
+  required: false
+  form: llm
+  default: 2
+  label:
+    en_US: Data Start Row
+    zh_Hans: 数据起始行
+  llm_description: Starting row for data (1-based, default 2)
+  human_description:
+    en_US: Starting row for data (1-based, default 2)
+    zh_Hans: Starting row for data (1-based, default 2)
+extra:
+  python:
+    source: tools/append_data.py

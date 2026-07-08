@@ -1,0 +1,42 @@
+identity:
+  name: "read_range"
+  author: "aosom"
+  label:
+    en_US: "Read Spreadsheet Range"
+    zh_Hans: "读取单元格范围"
+description:
+  human:
+    en_US: "Read data from a spreadsheet range, returns rows as arrays"
+    zh_Hans: "读取电子表格指定范围的数据，返回二维数组"
+  llm: >-
+    Read data from a specified range in a spreadsheet.
+    Returns rows as arrays. Range format: {sheetId}!A1:C10
+
+parameters:
+  - name: spreadsheet_token
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Spreadsheet Token
+      zh_Hans: 电子表格 Token
+    human_description:
+      en_US: The token of the spreadsheet
+      zh_Hans: 电子表格的 token
+    llm_description: The token of the spreadsheet
+
+  - name: range_str
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Range
+      zh_Hans: 范围
+    human_description:
+      en_US: "Range in A1 notation, e.g. 0!A1:C10 or Sheet1!A1:C10"
+      zh_Hans: "范围，如 0!A1:C10 或 Sheet1!A1:C10"
+    llm_description: "Range in A1 notation, e.g. {sheetId}!A1:C10 or {sheetName}!A1:C10"
+
+extra:
+  python:
+    source: tools/read_range.py

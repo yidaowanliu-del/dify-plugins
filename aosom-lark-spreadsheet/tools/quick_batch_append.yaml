@@ -1,0 +1,80 @@
+identity:
+  name: quick_batch_append
+  author: aosom
+  label:
+    en_US: Batch Append Data
+    zh_Hans: 批量追加数据
+description:
+  human:
+    en_US: Append multiple rows of dict data to a sheet
+    zh_Hans: 批量将字典格式的数据追加到工作表
+  llm: Append rows as dicts where keys are column names.
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+  label:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+- name: sheet_id
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+  label:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+- name: data
+  type: array
+  required: true
+  form: llm
+  label:
+    en_US: Data
+    zh_Hans: 数据
+  llm_description: 'Array of dicts. Example: [{"name":"Alice","age":"30"},{"name":"Bob","age":"25"}]'
+  human_description:
+    en_US: 'Array of dicts. Example: [{"name":"Alice","age":"30"},{"name":"Bob","age":"25"}]'
+    zh_Hans: 'Array of dicts. Example: [{"name":"Alice","age":"30"},{"name":"Bob","age":"25"}]'
+- name: batch_size
+  type: number
+  required: false
+  form: llm
+  default: 500
+  label:
+    en_US: Batch Size
+    zh_Hans: 每批行数
+  llm_description: Rows per batch (default 500)
+  human_description:
+    en_US: Rows per batch (default 500)
+    zh_Hans: Rows per batch (default 500)
+- name: data_start
+  type: number
+  required: false
+  form: llm
+  default: 2
+  label:
+    en_US: Data Start Row
+  llm_description: Starting row for data (default 2)
+  human_description:
+    en_US: Starting row for data (default 2)
+    zh_Hans: Starting row for data (default 2)
+- name: overwrite_start
+  type: any
+  required: false
+  form: llm
+  label:
+    en_US: Overwrite Start
+  llm_description: True to overwrite from data_start, int for specific row, None for
+    append
+  human_description:
+    en_US: True to overwrite from data_start, int for specific row, None for append
+    zh_Hans: True to overwrite from data_start, int for specific row, None for append
+extra:
+  python:
+    source: tools/quick_batch_append.py

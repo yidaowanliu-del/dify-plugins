@@ -1,0 +1,79 @@
+identity:
+  name: delete_dimension
+  author: aosom
+  label:
+    en_US: Delete Rows/Columns
+    zh_Hans: 删除行/列
+description:
+  human:
+    en_US: Delete rows or columns from a sheet (1-based inclusive, max 5000)
+    zh_Hans: 删除工作表的行或列（1-based 含首尾，单次最多 5000）
+  llm: Delete rows or columns from a sheet.
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Spreadsheet Token
+  llm_description: The token of the spreadsheet
+  human_description:
+    en_US: The token of the spreadsheet
+    zh_Hans: The token of the spreadsheet
+- name: sheet_id
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Sheet ID
+    zh_Hans: 工作表 ID
+  llm_description: The ID of the sheet
+  human_description:
+    en_US: The ID of the sheet
+    zh_Hans: The ID of the sheet
+- name: major_dimension
+  type: select
+  required: false
+  form: llm
+  default: COLUMNS
+  label:
+    en_US: Dimension
+    zh_Hans: 维度
+  options:
+  - value: COLUMNS
+    label:
+      en_US: Columns
+      zh_Hans: 列
+  - value: ROWS
+    label:
+      en_US: Rows
+      zh_Hans: 行
+  llm_description: 'ROWS or COLUMNS. Default: COLUMNS'
+  human_description:
+    en_US: 'ROWS or COLUMNS. Default: COLUMNS'
+    zh_Hans: 'ROWS or COLUMNS. Default: COLUMNS'
+- name: start_index
+  type: number
+  required: true
+  form: llm
+  label:
+    en_US: Start Index
+    zh_Hans: 起始索引
+  llm_description: Start index (1-based, inclusive)
+  human_description:
+    en_US: Start index (1-based, inclusive)
+    zh_Hans: Start index (1-based, inclusive)
+- name: end_index
+  type: number
+  required: true
+  form: llm
+  label:
+    en_US: End Index
+    zh_Hans: 结束索引
+  llm_description: End index (1-based, inclusive)
+  human_description:
+    en_US: End index (1-based, inclusive)
+    zh_Hans: End index (1-based, inclusive)
+extra:
+  python:
+    source: tools/delete_dimension.py

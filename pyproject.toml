@@ -9,4 +9,4 @@ dependencies = [
 ]
 
 [tool.uv.workspace]
-members = ["aosom-lark-message", "aosom-lark-bitable"]
+members = ["aosom-lark-message", "aosom-lark-bitable", "aosom-lark-spreadsheet"]

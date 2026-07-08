@@ -1,0 +1,37 @@
+identity:
+  name: write_multiple_range
+  author: aosom
+  label:
+    en_US: Write Multiple Ranges
+    zh_Hans: 批量写入多个范围
+description:
+  human:
+    en_US: Write data to multiple ranges in a single API call
+    zh_Hans: 在一次 API 调用中向多个范围写入数据
+  llm: Write data to multiple ranges at once. More efficient than multiple write_range
+    calls.
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+  label:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+- name: value_ranges
+  type: array
+  required: true
+  form: llm
+  label:
+    en_US: Value Ranges
+    zh_Hans: 多个范围数据
+  llm_description: 'Array of range+values objects. Example: [{"range":"Sheet1!A1:B2","values":[[1,2],[3,4]]}]'
+  human_description:
+    en_US: 'Array of range+values objects. Example: [{"range":"Sheet1!A1:B2","values":[[1,2],[3,4]]}]'
+    zh_Hans: 'Array of range+values objects. Example: [{"range":"Sheet1!A1:B2","values":[[1,2],[3,4]]}]'
+extra:
+  python:
+    source: tools/write_multiple_range.py

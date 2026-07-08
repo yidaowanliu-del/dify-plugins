@@ -1,0 +1,31 @@
+author: aosom
+created_at: "2026-07-08T14:09:22.566858+08:00"
+description:
+  en_US: Read and write Lark/Feishu spreadsheets
+  zh_Hans: 读写飞书电子表格
+icon: icon.svg
+label:
+  en_US: aosom Lark Spreadsheet
+  zh_Hans: aosom 飞书电子表格
+meta:
+  arch:
+    - amd64
+    - arm64
+  runner:
+    entrypoint: main
+    language: python
+    version: "3.12"
+  version: 0.0.1
+name: aosom-lark-spreadsheet
+plugins:
+  tools:
+    - provider/aosom-lark-spreadsheet.yaml
+resource:
+  memory: 1048576
+  permission:
+    tool:
+      enabled: true
+tags:
+  - productivity
+type: plugin
+version: 0.0.1

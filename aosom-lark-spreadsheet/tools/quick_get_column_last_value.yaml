@@ -1,0 +1,57 @@
+identity:
+  name: quick_get_column_last_value
+  author: aosom
+  label:
+    en_US: Get Column Last Value
+    zh_Hans: 获取列最后一个值
+description:
+  human:
+    en_US: Get the last non-empty value from a column
+    zh_Hans: 获取指定列中最后一个非空值
+  llm: Get the last non-empty cell value from a column.
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+  label:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+- name: sheet_id
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+  label:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+- name: column_name
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Column Name
+    zh_Hans: 列名
+  llm_description: The column header name to search
+  human_description:
+    en_US: The column header name to search
+    zh_Hans: The column header name to search
+- name: data_start
+  type: number
+  required: false
+  form: llm
+  default: 2
+  label:
+    en_US: Data Start Row
+  llm_description: Header row = data_start - 1 (default 2)
+  human_description:
+    en_US: Header row = data_start - 1 (default 2)
+    zh_Hans: Header row = data_start - 1 (default 2)
+extra:
+  python:
+    source: tools/quick_get_column_last_value.py

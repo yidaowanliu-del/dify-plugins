@@ -1,0 +1,58 @@
+identity:
+  name: quick_clear_sheet
+  author: aosom
+  label:
+    en_US: Clear Sheet
+    zh_Hans: 清空工作表
+description:
+  human:
+    en_US: Clear all data rows from a sheet, optionally keep header
+    zh_Hans: 清空工作表数据行，可选择保留表头
+  llm: Clear data rows from a sheet. Keeps header by default.
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+  label:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+- name: sheet_id
+  type: string
+  required: true
+  form: llm
+  human_description:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+  label:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+- name: keep_header
+  type: boolean
+  required: false
+  form: llm
+  default: true
+  label:
+    en_US: Keep Header
+    zh_Hans: 保留表头
+  llm_description: 'Whether to keep the header row (default: true)'
+  human_description:
+    en_US: 'Whether to keep the header row (default: true)'
+    zh_Hans: 'Whether to keep the header row (default: true)'
+- name: data_start
+  type: number
+  required: false
+  form: llm
+  default: 2
+  label:
+    en_US: Data Start Row
+  llm_description: First data row to clear (default 2)
+  human_description:
+    en_US: First data row to clear (default 2)
+    zh_Hans: First data row to clear (default 2)
+extra:
+  python:
+    source: tools/quick_clear_sheet.py

@@ -1,0 +1,66 @@
+identity:
+  name: quick_set_header_list
+  author: aosom
+  label:
+    en_US: Set Header List
+    zh_Hans: 写入新表头
+description:
+  human:
+    en_US: Write new header row starting at specified position
+    zh_Hans: 从指定位置写入新表头
+  llm: Write a new header row to the sheet.
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Spreadsheet Token
+  human_description:
+    en_US: spreadsheet_token
+    zh_Hans: spreadsheet_token
+- name: sheet_id
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Sheet ID
+  human_description:
+    en_US: sheet_id
+    zh_Hans: sheet_id
+- name: header_list
+  type: array
+  required: true
+  form: llm
+  label:
+    en_US: Headers
+    zh_Hans: 表头列表
+  llm_description: List of header names to write
+  human_description:
+    en_US: List of header names to write
+    zh_Hans: List of header names to write
+- name: keep_columns
+  type: number
+  required: false
+  form: llm
+  label:
+    en_US: Keep Columns
+    zh_Hans: 保留列数
+  llm_description: Number of existing columns to keep before writing new headers
+  human_description:
+    en_US: Number of existing columns to keep before writing new headers
+    zh_Hans: Number of existing columns to keep before writing new headers
+- name: data_start
+  type: number
+  required: false
+  form: llm
+  default: 2
+  label:
+    en_US: Data Start Row
+  llm_description: Header row = data_start - 1 (default 2)
+  human_description:
+    en_US: Header row = data_start - 1 (default 2)
+    zh_Hans: Header row = data_start - 1 (default 2)
+extra:
+  python:
+    source: tools/quick_set_header_list.py

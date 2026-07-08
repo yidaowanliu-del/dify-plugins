@@ -1,0 +1,47 @@
+identity:
+  name: copy_sheet
+  author: aosom
+  label:
+    en_US: Copy Sheet
+    zh_Hans: 复制工作表
+description:
+  human:
+    en_US: Copy a sheet within a spreadsheet
+    zh_Hans: 在电子表格中复制工作表
+  llm: Copy a sheet within a spreadsheet.
+parameters:
+- name: spreadsheet_token
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Spreadsheet Token
+  llm_description: The token of the spreadsheet
+  human_description:
+    en_US: The token of the spreadsheet
+    zh_Hans: The token of the spreadsheet
+- name: source_sheet_id
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Source Sheet ID
+    zh_Hans: 源工作表 ID
+  llm_description: The ID of the source sheet to copy
+  human_description:
+    en_US: The ID of the source sheet to copy
+    zh_Hans: The ID of the source sheet to copy
+- name: title
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: New Sheet Title
+    zh_Hans: 新工作表标题
+  llm_description: Title for the new copied sheet
+  human_description:
+    en_US: Title for the new copied sheet
+    zh_Hans: Title for the new copied sheet
+extra:
+  python:
+    source: tools/copy_sheet.py
