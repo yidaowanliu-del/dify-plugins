@@ -81,6 +81,13 @@ aosom-lark-xxx/
 - `extra.python.source`: points to the correct file path
 - `msg_type` option labels: use English values (text, post, image, interactive)
 
+### Resource Memory 注意事项
+
+- `manifest.yaml` 中 `resource.memory` 单位是字节
+- **1MB (1048576)**: 适合 1-2 个工具的简单插件（如 bitable、message）
+- **256MB (268435456)**: 工具较多（如 spreadsheet 16个工具）必须用大内存，否则 daemon 会一直"部署中"
+- 如果没有特殊原因，直接写 `268435456` 最省事
+
 ### 7. Package name
 
 ```bash
