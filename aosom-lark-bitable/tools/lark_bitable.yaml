@@ -1,0 +1,151 @@
+identity:
+  name: "lark_search_records"
+  author: "aosom"
+  label:
+    en_US: "Search Bitable Records"
+    zh_Hans: "搜索多维表格记录"
+description:
+  human:
+    en_US: "Search records in a Lark/Feishu Bitable table with filtering, sorting, and pagination"
+    zh_Hans: "搜索飞书多维表格记录，支持过滤、排序、分页"
+  llm: >-
+    Search records in a Lark/Feishu Bitable (多维表格) table.
+    Supports filtering, sorting, field selection, and pagination.
+    Returns matching records as structured JSON.
+
+parameters:
+  - name: app_token
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: App Token
+      zh_Hans: 多维表格 Token
+    human_description:
+      en_US: The app_token of the bitable
+      zh_Hans: 多维表格的 app_token
+    llm_description: The app_token of the bitable (e.g., "bascnNxVxxxx")
+
+  - name: table_id
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Table ID
+      zh_Hans: 数据表 ID
+    human_description:
+      en_US: The table_id of the bitable table
+      zh_Hans: 数据表的 table_id
+    llm_description: The table_id of the bitable table (e.g., "tblxxxx")
+
+  - name: view_id
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: View ID
+      zh_Hans: 视图 ID
+    human_description:
+      en_US: Optional view ID to filter records by view
+      zh_Hans: 可选，按视图过滤记录
+    llm_description: Optional view ID to filter records
+
+  - name: field_names
+    type: array
+    required: false
+    form: llm
+    label:
+      en_US: Field Names
+      zh_Hans: 返回字段列表
+    human_description:
+      en_US: List of field names to return (empty means all fields)
+      zh_Hans: 指定返回的字段名列表，为空则返回全部字段
+    llm_description: List of field names to return
+
+  - name: sort
+    type: array
+    required: false
+    form: llm
+    label:
+      en_US: Sort
+      zh_Hans: 排序规则
+    human_description:
+      en_US: "Array of sort objects. Each: {\"field_name\": \"fieldName\", \"desc\": false}"
+      zh_Hans: "排序条件数组。每项格式: {\"field_name\": \"字段名\", \"desc\": false}"
+    llm_description: "Array of sort objects. Example: [{\"field_name\": \"fieldName\", \"desc\": false}]"
+
+  - name: filter
+    type: object
+    required: false
+    form: llm
+    label:
+      en_US: Filter
+      zh_Hans: 过滤条件
+    human_description:
+      en_US: Filter conditions as JSON object
+      zh_Hans: 过滤条件 JSON 对象
+    llm_description: Filter conditions as JSON object
+
+  - name: page_size
+    type: number
+    required: false
+    form: llm
+    default: 20
+    label:
+      en_US: Page Size
+      zh_Hans: 分页大小
+    human_description:
+      en_US: Number of records per page (1-500)
+      zh_Hans: 每页记录数 (1-500)
+    llm_description: Number of records per page, max 500
+
+  - name: page_token
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Page Token
+      zh_Hans: 分页 Token
+    human_description:
+      en_US: Page token for pagination from previous search
+      zh_Hans: 分页 token，用于翻页
+    llm_description: Page token returned from previous search for pagination
+
+  - name: automatic_fields
+    type: boolean
+    required: false
+    form: llm
+    label:
+      en_US: Auto Fields
+      zh_Hans: 自动计算字段
+    human_description:
+      en_US: Whether to return auto-calculated fields
+      zh_Hans: 是否返回自动计算字段
+    llm_description: Whether to return auto-calculated fields
+
+  - name: user_id_type
+    type: select
+    required: false
+    form: llm
+    default: open_id
+    label:
+      en_US: User ID Type
+      zh_Hans: 用户 ID 类型
+    human_description:
+      en_US: User ID type
+      zh_Hans: 用户 ID 类型
+    llm_description: "User ID type: open_id, user_id, or union_id"
+    options:
+      - value: open_id
+        label:
+          en_US: open_id
+      - value: user_id
+        label:
+          en_US: user_id
+      - value: union_id
+        label:
+          en_US: union_id
+
+extra:
+  python:
+    source: tools/lark_bitable.py

@@ -1,0 +1,31 @@
+author: aosom
+created_at: "2026-07-08T13:15:43.310314+08:00"
+description:
+  en_US: Search Lark/Feishu bitable records with filtering and pagination
+  zh_Hans: 搜索飞书多维表格记录，支持过滤、排序、分页
+icon: icon.svg
+label:
+  en_US: aosom Lark Bitable
+  zh_Hans: aosom 飞书多维表格
+meta:
+  arch:
+    - amd64
+    - arm64
+  runner:
+    entrypoint: main
+    language: python
+    version: "3.12"
+  version: 0.0.1
+name: aosom-lark-bitable
+plugins:
+  tools:
+    - provider/aosom-lark-bitable.yaml
+resource:
+  memory: 1048576
+  permission:
+    tool:
+      enabled: true
+tags:
+  - productivity
+type: plugin
+version: 0.0.2
