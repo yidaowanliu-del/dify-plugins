@@ -21,7 +21,7 @@ plugins:
   tools:
     - provider/aosom-lark-spreadsheet.yaml
 resource:
-  memory: 1048576
+  memory: 268435456
   permission:
     tool:
       enabled: true
