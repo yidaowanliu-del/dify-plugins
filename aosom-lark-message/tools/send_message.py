@@ -16,7 +16,6 @@ class SendMessageTool(Tool):
         msg_type = tool_parameters.get("msg_type", "text")
         content = tool_parameters.get("content", "")
         receive_id_type = tool_parameters.get("receive_id_type", "open_id")
-        uuid = tool_parameters.get("uuid")
 
         if not receive_id:
             raise ValueError("receive_id is required")
@@ -34,7 +33,6 @@ class SendMessageTool(Tool):
             msg_type,
             content,
             receive_id_type=receive_id_type,
-            uuid=uuid,
         )
         yield self.create_json_message(
             {

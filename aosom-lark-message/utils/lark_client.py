@@ -66,15 +66,12 @@ class LarkClient:
         content: str,
         *,
         receive_id_type: str = "open_id",
-        uuid: str | None = None,
     ) -> dict[str, Any]:
         body: dict[str, Any] = {
             "receive_id": receive_id,
             "msg_type": msg_type,
             "content": content,
         }
-        if uuid is not None:
-            body["uuid"] = uuid
         return self._request(
             "POST",
             "/open-apis/im/v1/messages",
@@ -89,13 +86,12 @@ class LarkClient:
         content: str,
         *,
         receive_id_type: str = "open_id",
-        uuid: str | None = None,
     ) -> list[dict[str, Any]]:
         results: list[dict[str, Any]] = []
         for uid in receive_ids:
             try:
                 data = self.send_message(
-                    uid, msg_type, content, receive_id_type=receive_id_type, uuid=uuid
+                    uid, msg_type, content, receive_id_type=receive_id_type
                 )
                 results.append({"receive_id": uid, "message_id": data.get("message_id", "")})
             except Exception as e:

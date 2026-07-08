@@ -98,18 +98,6 @@ parameters:
         label:
           en_US: chat_id
 
-  - name: uuid
-    type: string
-    required: false
-    form: llm
-    label:
-      en_US: UUID
-      zh_Hans: UUID（去重）
-    human_description:
-      en_US: "Unique identifier for idempotency. Same UUID prevents duplicate sends within 1 hour. Max 50 chars."
-      zh_Hans: "去重序列号，最长 50 字符。相同 uuid 在 1 小时内至多发送一条消息。"
-    llm_description: "Optional UUID for idempotent message sending. Same UUID within 1 hour prevents duplicate messages. Max 50 characters."
-
 extra:
   python:
     source: tools/send_messages.py
